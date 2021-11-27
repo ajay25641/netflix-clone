@@ -4,7 +4,9 @@ import axios from "../axios";
 import "./Row.css";
 import movieTrailer from "movie-trailer";
 const base_url = "https://image.tmdb.org/t/p/original";
-export const Row = ({ title, fetchUrl, isLargeRow }) => {
+export const Row = ({ title, fetchUrl}) => {
+  console.log('title' , title);
+  console.log('fetch url',fetchUrl)
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
   useEffect(() => {
@@ -13,6 +15,7 @@ export const Row = ({ title, fetchUrl, isLargeRow }) => {
       setMovies(response.data.results);
     }
     fetchData();
+    console.log(movies);
   }, [fetchUrl]);
   const opts = {
     height: "390px",
@@ -42,15 +45,15 @@ export const Row = ({ title, fetchUrl, isLargeRow }) => {
   };
   return (
     <div className="row">
-      <h2> {title} </h2>
-      <div className="row_posters">
+      <h2 style={{color:"black"}} > {title} </h2>
+      <div className="row_posters" >
         {movies.map((movie) => (
           <img
             key={movie.id}
             onClick={() => handleClick(movie)}
-            className={`row_poster ${isLargeRow && "row_poster_large"}`}
+            className="row_poster"
             src={`${base_url}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
+             movie.poster_path
             }`}
             alt={movie.name}
           />
