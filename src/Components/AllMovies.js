@@ -76,28 +76,24 @@ export const AllMovies = () => {
                 <div className="modal-dialog modal-fullscreen">
                     <div className="modal-content">
                         <div className="modal-body">
-                            <div className="card h-100" style={{ maxWidth: "100%" ,border:"none" }}>
+                            <div className="card h-100" style={{ maxWidth: "100%", border: "none" }}>
                                 <div className="row g-0">
                                     <div className="col-md-4">
-
                                         <img
                                             style={{ height: "40vw" }}
                                             className="img-fluid rounded-start"
                                             src={`${base_url}${clickedMovie.poster_path}`}
                                             alt={clickedMovie.name}
-
                                         />
-
-
                                     </div>
                                     <div className="col-md-8">
-                                        <div className="card-body" style={{color:"black"}} >
+                                        <div className="card-body" style={{ color: "black" }} >
                                             <h2 className="card-title">{clickedMovie.title}</h2>
                                             <h5>Overview</h5>
                                             <p className="card-text">{clickedMovie.overview}</p>
                                             <p className="card-text"><small className="text-muted">Release Date {clickedMovie.release_date}</small></p>
                                             <p className="card-text"><i className="fa-solid fa-star" style={{ color: "sandybrown" }}><span style={{ color: "black" }}> {clickedMovie.vote_average}</span></i></p>
-                                            <p className="card-text"><button className="btn btn-primary" style={{width:"100%" , height:"50px",color:"white" ,fontSize:"25px" , fontWeight:"bolder",    fontfamily: "-webkit-body"}} >Play Trailer</button></p>
+                                            <p className="card-text"><button className="btn btn-primary" style={{ width: "100%", height: "50px", color: "white", fontSize: "25px", fontWeight: "bolder", fontfamily: "-webkit-body" }} >Play Trailer</button></p>
                                         </div>
                                     </div>
                                 </div>
@@ -105,12 +101,10 @@ export const AllMovies = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Close</button>
-
                         </div>
                     </div>
                 </div>
             </div>
-
             <div style={{ marginTop: "20px" }} >
                 {movieData.totalPages > 0 ? (
                     <Pagination
