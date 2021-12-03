@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import requests from "../request";
 import "./banner.css";
+import { DetailModal } from "./DetailModal";
+
+
 const Banner = () => {
   const [movie, setMovie] = useState({});
-
+  const [isModalOpen , setModalState] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(requests.fetchNetflixOriginals);
@@ -19,19 +22,26 @@ const Banner = () => {
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
+  const handlePlayButton = ()=>{
+   setModalState(true);
+  }
+  const handleClose = ()=>{
+    setModalState(false);
+  }
+  
   return (
-    <div class="card h-50">
-      <img src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} class="card-img" style={{ height: "500px" }} alt="..." />
-      <div class="card-img-overlay" style={{ top: "230px" }}>
-        <h1 class="card-title banner_title ">{movie?.title || movie?.name || movie?.original_name}</h1>
-        <p class="card-text"> <h1 className="banner_description">{truncate(movie?.overview, 150)}</h1></p>
-        <p class="card-text"></p>
+    <div className="card h-50">
+      <img src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} className="card-img" style={{ height: "500px" }} alt="..." />
+      <div className="card-img-overlay" style={{ top: "230px" }}>
+        <h1 className="card-title banner_title ">{movie?.title || movie?.name || movie?.original_name}</h1>
+        <p className="card-text"> <h1 className="banner_description">{truncate(movie?.overview, 150)}</h1></p>
+        <p className="card-text"></p>
         <div className="banner_buttons">
-          <button className="banner_button" >Play</button>
+          <button className="banner_button" onClick={handlePlayButton} >Play</button>
           <button className="banner_button">My List</button>
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 export default Banner;

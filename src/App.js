@@ -11,14 +11,15 @@ function App() {
 
   return (
     <div className="App">
-      <Nav />
+    
       <Banner />
       <Row
         title="NETFLIX ORIGINALS"
         fetchUrl={requests.fetchNetflixOriginals}
+        key='1'
       />
-      <Row title="TRENDING NOW " fetchUrl={requests.fetchTrending} />
-      <Row title="TOP RATED MOVIES " fetchUrl={requests.fetchTopRated} />
+      <Row key='2' title="TRENDING NOW " fetchUrl={requests.fetchTrending} />
+      <Row key='3' title="TOP RATED MOVIES " fetchUrl={requests.fetchTopRated} />
       <AllMovies />
     </div>
   );
