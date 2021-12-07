@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import requests from "../request";
 import "./banner.css";
-import { DetailModal } from "./DetailModal";
+import { useNavigate } from 'react-router-dom';
 
 
-const Banner = () => {
+const Banner = ({title}) => {
+  const navigate = useNavigate();
   const [movie, setMovie] = useState({});
-  const [isModalOpen , setModalState] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(requests.fetchNetflixOriginals);
@@ -23,12 +23,9 @@ const Banner = () => {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   }
   const handlePlayButton = ()=>{
-   setModalState(true);
+    navigate(`/movieDetail?movieId=${movie.id}&movieType=${title}`, { state: { clickedMovie: movie } })
   }
-  const handleClose = ()=>{
-    setModalState(false);
-  }
-  
+   
   return (
     <div className="card h-50">
       <img src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`} className="card-img" style={{ height: "500px" }} alt="..." />

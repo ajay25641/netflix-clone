@@ -3,7 +3,7 @@ import './youtubeEmbed.css';
 
 const YoutubeEmbed = ({embedId}) => {
     return (
-        <div className="video-responsive">
+        <div className="video-responsive" style={{height:"100%"}} >
         <iframe
           width="853"
           height="480"
