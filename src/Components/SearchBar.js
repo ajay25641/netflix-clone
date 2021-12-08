@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "../axios";
 
 
+
 const base_url = "https://image.tmdb.org/t/p/original";
 
 const SearchBar = () => {
@@ -60,7 +61,7 @@ const SearchBar = () => {
     };
     const handleImageClick = (movie) => {
         if (movie !== undefined) {
-            navigate(`/movieDetail?movieId=${movie.id}&movieType=MovieSearch`, { state: { clickedMovie: movie } })
+            navigate(`/movieDetail?movieId=${movie.id}&movieType=${optionValue==1?"NETFLIX ORIGINALS":"All"}`, { state: { clickedMovie: movie } })
         }
         else alert('Movie details not found');
     }
