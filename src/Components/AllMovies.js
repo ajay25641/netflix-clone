@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../axios"
 import { useState, useEffect } from "react";
 import "./Row.css";
 import { Pagination } from "./Pagination";
@@ -8,19 +8,16 @@ import { useNavigate } from 'react-router-dom';
 
 const base_url = "https://image.tmdb.org/t/p/original";
 
-export const AllMovies = ({title}) => {
+export const AllMovies = ({ title, fetchUrl }) => {
     const navigate = useNavigate();
     const [counter, setCounter] = useState(0);
     const [movieData, setMovieData] = useState({
         movieList: [],
         currentPage: 1,
-        totalPages: 0,
+        totalPages: 1,
     });
     useEffect(() => {
-       axios
-            .get(
-                `https://api.themoviedb.org/3/discover/movie?api_key=7f5818df9df5b63b9d68dbd47b4f79fa&language=en-US&sort_by=popularity.desc&page=${movieData.currentPage}`
-            )
+        axios.get(`${fetchUrl}&page=${movieData.currentPage}`)
             .then((response) => {
                 setMovieData({
                     movieList: response.data.results,
@@ -41,13 +38,15 @@ export const AllMovies = ({title}) => {
         });
     };
     const handleImageClick = (movie) => {
-        navigate(`/movieDetail?movieId=${movie.id}&movieType=${title}`, { state: { clickedMovie: movie } })     
+        if (movie !== undefined) {
+            navigate(`/movieDetail?movieId=${movie.id}&movieType=${title}`, { state: { clickedMovie: movie } })
+        }
+        else alert('Movie details not found');
     }
- 
     return (
         <div>
             <h2 style={{ color: "black", textAlign: "left", marginLeft: "40px" }}>
-                All Movies
+                {title}
             </h2>
             <div className="row row-cols-2 row-cols-md-5 g-4">
                 {movieData.movieList && movieData.movieList.length > 0
@@ -58,8 +57,7 @@ export const AllMovies = ({title}) => {
                                     <img
                                         key={movie.id}
                                         className="card-img-top"
-                                        src={`${base_url}${movie.poster_path}`}
-                                        alt={movie.name}
+                                        src={`${movie.poster_path !== null || undefined ? `${base_url}${movie.poster_path}` : "Assets/no_image_found.jpg"}`}
                                         style={{ height: "15vw" }}
                                         onClick={() => handleImageClick(movie)}
                                     />
@@ -73,9 +71,9 @@ export const AllMovies = ({title}) => {
                     })
                     : null}
             </div>
-           
+
             <div style={{ marginTop: "20px" }} >
-                {movieData.totalPages > 0 ? (
+                {movieData.totalPages > 1 ? (
                     <Pagination
                         onPageChange={handleOnPageChange}
                         totalPages={movieData.totalPages}

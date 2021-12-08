@@ -52,8 +52,7 @@ export const DetailPage = () => {
                         <img
                             style={{ height: "40vw" }}
                             className="img-fluid rounded-start"
-                            src={`${base_url}${clickedMovie.poster_path}`}
-                            alt={clickedMovie.name}
+                            src={`${clickedMovie.poster_path !==null||undefined?`${base_url}${clickedMovie.poster_path}`:"Assets/no_image_found.jpg"}`}
                         />
                     </div>
                     <div className="col-md-8">

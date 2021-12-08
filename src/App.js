@@ -5,11 +5,11 @@ import Banner from "./Components/Banner";
 import { AllMovies } from "./Components/AllMovies";
 
 
-
 function App() {
 
   return (
     <div className="App">
+    
      <Banner title="NETFLIX ORIGINALS"/>
       <Row
         title="NETFLIX ORIGINALS"
@@ -18,7 +18,7 @@ function App() {
       />
       <Row key='2' title="TRENDING NOW " fetchUrl={requests.fetchTrending} />
       <Row key='3' title="TOP RATED MOVIES " fetchUrl={requests.fetchTopRated} />
-      <AllMovies  title="All Movies"/>
+      <AllMovies  title="All Movies" fetchUrl={requests.fetchAll}/>
     </div>
   );
 }

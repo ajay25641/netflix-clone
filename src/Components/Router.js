@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from '../App';
 import { DetailPage } from './DetailPage';
 import Nav from './Nav';
+import SearchBar from './SearchBar';
 
 
 const Router = () => {
@@ -13,6 +14,7 @@ const Router = () => {
             <Routes>
             <Route exact path='/' element={<App/>} />
             <Route path='/movieDetail' element={<DetailPage/>} />
+            <Route path='/searchMovie' element={<SearchBar/>} />
             </Routes>
         </BrowserRouter>
 

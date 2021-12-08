@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const Pagination = ({ onPageChange, totalPages, currentPage, counter, handleCounter }) => {
-    const buttonPerPage = 20;
+    const buttonPerPage = totalPages>20?20:totalPages;
     const startIndex = 1 + buttonPerPage * counter;
     const endIndex = buttonPerPage + buttonPerPage * counter;
     return (
@@ -15,7 +15,7 @@ export const Pagination = ({ onPageChange, totalPages, currentPage, counter, han
                         })
                     }
 
-                    <li className="page-item"><button className={`page-link ${endIndex == 500 ? "btn disabled" : null}`} name="next" value={1} onClick={(e) => handleCounter(parseInt(e.target.value))} >Next</button></li>
+                    <li className="page-item"><button className={`page-link ${endIndex == totalPages ? "btn disabled" : null}`} name="next" value={1} onClick={(e) => handleCounter(parseInt(e.target.value))} >Next</button></li>
                 </ul>
             </nav>
         </div>

@@ -2,9 +2,53 @@
 .nav_logo {
   margin-left: 25px;
 color: white;
+display: inline-block;
 }
 .header{
   height: 50px;
-  background-color:cornflowerblue
-
+  background-color:cornflowerblue;
   }
+.button_design{
+  float: right;
+  margin-right: 10px;
+  margin-top: 5px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+  border-color: crimson;
+  color: blue;
+  font: icon;
+}
+.button_design1{
+  margin-left: 10px;
+  margin-top: 5px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100px;
+  border-color: crimson;
+  color: blue;
+  font: icon;
+}
+.input_field{
+  margin-top: 5px;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 50%;
+    border-color: crimson;
+    color: deeppink;
+    font: icon;
+}
+.select_design{
+  margin-top: 5px;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 150px;
+  border-color: crimson;
+  color: blue;
+  font: icon;
+  margin-right: 10px;
+}

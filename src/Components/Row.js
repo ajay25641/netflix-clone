@@ -24,9 +24,12 @@ export const Row = ({ title, fetchUrl }) => {
   }, [page]);
 
   const handleClick = (movie) => {
-    navigate(`/movieDetail?movieId=${movie.id}&movieType=${title}`, { state: { clickedMovie: movie } })
+    if (movie !== undefined) {
+      navigate(`/movieDetail?movieId=${movie.id}&movieType=${title}`, { state: { clickedMovie: movie } })
+    }
+    else alert('Movie details not found');
   };
- 
+
   const handleCount = (e) => {
     if (e.target.name == '1') {
       if (e.target.value == 2) {
@@ -61,13 +64,12 @@ export const Row = ({ title, fetchUrl }) => {
             key={movie.id}
             onClick={() => handleClick(movie)}
             className="row_poster"
-            src={`${base_url}${movie.poster_path
-              }`}
-            alt={movie.name}
+            src={`${movie.poster_path !== undefined || null ? `${base_url}${movie.poster_path}` : "Assets/no_image_found.jpg"}`}
+
           />
         ))}
       </div>
-      </div>
+    </div>
   );
 };
 export default Row;
